@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="input-section">
+    <div class="input-group">
+      <input
+        type="text"
+        placeholder="Start Point (min 3 chars)"
+        [(ngModel)]="newStartPoint"
+        minlength="3"
+        required
+      />
+      <input
+        type="text"
+        placeholder="End Point (min 3 chars)"
+        [(ngModel)]="newEndPoint"
+        minlength="3"
+        required
+      />
+      <button
+        (click)="addTrip()"
+        [disabled]="!newStartPoint || !newEndPoint || newStartPoint.length < 3 || newEndPoint.length < 3"
+      >
+        Add Trip
+      </button>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <div #networkContainer class="network-container"></div>
+    
+    <div class="trip-list">
+      <h3>Current Trips:</h3>
+      <ul>
+        <li *ngFor="let trip of trips; let i = index">
+          {{ i + 1 }}: {{ trip.start }} -> {{ trip.end }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="trip-flow-visualization">
+    <div class="route-segment">
+      <div class="city-point start">
+        <div class="dot"></div>
+        <div class="city-name">BLR - MAA</div>
+      </div>
+      <div class="line blue"></div>
+    </div>
+    
+    <div class="route-segment">
+      <div class="city-point">
+        <div class="dot blue"></div>
+        <div class="city-name">MAA - HYD</div>
+      </div>
+      <div class="line blue"></div>
+    </div>
+    
+    <div class="route-segment">
+      <div class="city-point">
+        <div class="dot orange"></div>
+        <div class="city-name">BLR - HYD</div>
+      </div>
+      <div class="line orange"></div>
+    </div>
+    
+    <div class="route-segment">
+      <div class="city-point">
+        <div class="dot"></div>
+        <div class="city-name">HYB - DEL</div>
+      </div>
+      <div class="line black"></div>
+    </div>
+    
+    <div class="route-segment">
+      <div class="city-point end">
+        <div class="dot"></div>
+        <div class="city-name">DEL - BLR</div>
+      </div>
+    </div>
+  </div>
+</div>
